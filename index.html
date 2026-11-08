@@ -48,11 +48,6 @@ studentsList.forEach(student => {
   console.log("Name: " + student.name + " | Average: " + avg.toFixed(2) + " | Grade: " + grade + " | Result: " + status);
 });
 
-
-
-  console.log("Name: " + student.name + " | Average: " + avg.toFixed(2) + " | Grade: " + grade + " | Result: " + status);
-});
-
 const failingStudents = studentsList.filter(student => {
   const avg = student.getAverage();
   return avg >= 40 && avg <= 49;
