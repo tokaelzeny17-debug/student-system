@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>نظام إدارة وتحليل نتائج الطلاب</title>
+</head>
+<body>
+<h1>نظام إدارة وتحليل نتائج الطلاب</h1>
+
+<script>
+class Student {
+  constructor(id, name, grades, attendance) {
+    this.id = id;
+    this.name = name;
+    this.grades = grades;
+    this.attendance = attendance;
+  }
+  getAverage() {
+    const sum = this.grades.reduce((acc, grade) => acc + grade, 0);
+    return sum / this.grades.length;
+  }
+  getLetterGrade(average) {
+    if (average >= 90) return 'A';
+    if (average >= 80) return 'B';
+    if (average >= 70) return 'C';
+    if (average >= 60) return 'D';
+    if (average >= 50) return 'E';
+    return 'F';
+  }
+  getFinalResult() {
+    const avg = this.getAverage();
+    return (avg >= 50 && this.attendance >= 75) ? "ناجح" : "يحتاج مراجعة";
+  }
+}
+
+const studentsList = [
+  new Student(101, "أحمد محمد", [88, 92, 85], 90),
+  new Student(102, "سارة علي", [45, 48, 42], 80),
+  new Student(103, "محمد خالد", [40, 44, 49], 78),
+  new Student(104, "نورهان", [55, 60, 58], 70)
+];
+
+console.log("===== تقرير الطلاب الرئيسي =====");
+studentsList.forEach(student => {
+  const avg = student.getAverage();
+  console.log(`الاسم: ${student.name} | المتوسط: ${avg.toFixed(2)} | التقدير: ${student.getLetterGrade(avg)} | النتيجة: ${student.getFinalResult()}`);
+});
+
+const failingStudents = studentsList.filter(student => {
+  const avg = student.getAverage();
+  return avg >= 40 && avg <= 49;
+});
+
+const afterCompassion = failingStudents.map(student => {
+  const oldAvg = student.getAverage();
+  return { name: student.name, oldAverage: oldAvg, newAverage: oldAvg + 5 };
+});
+
+const totalNewAverage = afterCompassion.reduce((acc, student) => acc + student.newAverage, 0);
+const finalAverageAfterCompassion = afterCompassion.length > 0 ? totalNewAverage / afterCompassion.length : 0;
+
+console.log("الطلاب المتعثرين الذين شملتهم الرأفة:", afterCompassion);
+console.log(`متوسط درجات المتعثرين بعد الرأفة: ${finalAverageAfterCompassion.toFixed(2)}`);
+</script>
+
+</body>
+</html>
