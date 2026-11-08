@@ -44,7 +44,12 @@ console.log("===== تقرير الطلاب الرئيسي =====");
 studentsList.forEach(student => {
   const avg = student.getAverage();
   const grade = avg >= 90 ? "A" : avg >= 80 ? "B" : avg >= 70 ? "C" : avg >= 60 ? "D" : avg >= 50 ? "E" : "F";
-const status = avg >= 50 ? "ناجح" : "يحتاج مراجعة";
+  const status = avg >= 50 ? "ناجح" : "يحتاج مراجعة";
+  console.log("Name: " + student.name + " | Average: " + avg.toFixed(2) + " | Grade: " + grade + " | Result: " + status);
+});
+
+
+
   console.log("Name: " + student.name + " | Average: " + avg.toFixed(2) + " | Grade: " + grade + " | Result: " + status);
 });
 
