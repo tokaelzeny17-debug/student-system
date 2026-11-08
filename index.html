@@ -43,7 +43,7 @@ const studentsList = [
 console.log("===== تقرير الطلاب الرئيسي =====");
 studentsList.forEach(student => {
   const avg = student.getAverage();
-  console.log("Name: " + s.name + " | Average: " + avg.toFixed(2) + " | Grade: " + grade + " | Result: " + status);
+  console.log("Name: " + student.name + " | Average: " + avg.toFixed(2) + " | Grade: " + grade + " | Result: " + status);
 });
 
 const failingStudents = studentsList.filter(student => {
